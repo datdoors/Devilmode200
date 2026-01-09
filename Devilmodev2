@@ -1,0 +1,56 @@
+-- DOORS STYLE TEXT - BOTTOM (STANDALONE)
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+
+-- GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "DoorsBottomText"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- TEXT LABEL
+local text = Instance.new("TextLabel")
+text.Size = UDim2.new(1, 0, 0.1, 0)
+text.Position = UDim2.new(0, 0, 0.82, 0) -- 👇 DƯỚI MÀN HÌNH
+text.BackgroundTransparency = 1
+text.TextTransparency = 1
+text.TextStrokeTransparency = 0
+text.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+text.Font = Enum.Font.GothamBlack
+text.TextScaled = true
+text.TextColor3 = Color3.fromRGB(0, 255, 120) -- xanh lá Doors
+text.Parent = gui
+
+-- FUNCTION HIỆN CHỮ
+local function showText(msg, duration)
+	text.Text = msg
+
+	TweenService:Create(text, TweenInfo.new(0.4), {
+		TextTransparency = 0
+	}):Play()
+
+	task.wait(duration)
+
+	TweenService:Create(text, TweenInfo.new(0.4), {
+		TextTransparency = 1
+	}):Play()
+
+	task.wait(0.5)
+end
+
+-- 1️⃣ HIỆN NGAY KHI CHẠY SCRIPT
+task.spawn(function()
+	task.wait(0.4)
+	showText("DEVIL MODE SCRIPT REMAKE SUCCESSFULLY LOADED", 2)
+end)
+
+-- 2️⃣ QUA CỬA 1
+task.spawn(function()
+	repeat task.wait() until workspace:FindFirstChild("CurrentRooms")
+	repeat task.wait() until workspace.CurrentRooms:FindFirstChild("1")
+
+	showText("MADE BY SMILE AND TUFFMU!", 2)
+	showText("GOOD LUCK!", 2)
+end)
